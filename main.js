@@ -58,6 +58,7 @@ let mode = 0;
 let figuresIndex = 0;
 
 function SetupMode() {
+    figuresIndex = 0;
     let modesIndex = 0;
 
     for (const [key, value] of map) {
