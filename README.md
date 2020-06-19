@@ -1,3 +1,3 @@
 # Trigonometry
 
-http://otcova.github.io/Trigonometry
+http://otcova.github.io/trigonometry
