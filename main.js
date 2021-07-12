@@ -200,7 +200,7 @@ function draw() {
         const t = sin(pgMoveFrame/speed + a);
         const pt = sin(pgMoveFrame/speed + a + step);
         
-        points.push({vx,vy,t,pt,a});
+        points.push({vx,vy,t,pt,a,i});
     }
     
     if (map.get("drawOrvit"))  {
@@ -215,9 +215,10 @@ function draw() {
             ellipse((vx*t+cos(a+step)*r*pt)/2, (vy*t+sin(a+step)*r*pt)/2, 15);
     }
     if (map.get("drawDots")) {
-        setColor(this, i/costats);
-        for (const {vx,vy,t} of points)
+        for (const {vx,vy,t,i} of points) {
+            setColor(this, i/costats);
             ellipse(vx*t, vy*t, 15);
+        }
     }
     if (map.get("drawResultDot")) {
         fill(200, 100, 100);
