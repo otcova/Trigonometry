@@ -192,33 +192,31 @@ function draw() {
     translate(width / 2, height / 2);
     stroke(0);
     
-    const t = sin(pgMoveFrame/speed + a);
-    const pt = sin(pgMoveFrame/speed + a + step);
-    
     const points = [];
     
-    let a = 0;
-    for (let i = 0; i < costats; i += 2, a += step) {
+    for (let i = 0, a = 0; i < costats; i += 2, a += step) {
         const vx = cos(a)*r;
         const vy = sin(a)*r;
+        const t = sin(pgMoveFrame/speed + a);
+        const pt = sin(pgMoveFrame/speed + a + step);
         
-        points.push({vx,vy,a});
+        points.push({vx,vy,t,pt,a});
     }
     
     if (map.get("drawOrvit"))  {
         stroke(0, 200);
         strokeWeight(1);
-        for (const {vx,vy,a} of points)
+        for (const {vx,vy,t,pt,a} of points)
             line(vx*t, vy*t, cos(a+step)*r*pt, sin(a+step)*r*pt);
     }
     if (map.get("drawDotsCenter")) {
         fill(100, 100, 160);
-        for (const {vx,vy,a} of points)
+        for (const {vx,vy,t,pt,a} of points)
             ellipse((vx*t+cos(a+step)*r*pt)/2, (vy*t+sin(a+step)*r*pt)/2, 15);
     }
     if (map.get("drawDots")) {
         setColor(this, i/costats);
-        for (const {vx,vy} of points)
+        for (const {vx,vy,t} of points)
             ellipse(vx*t, vy*t, 15);
     }
     if (map.get("drawResultDot")) {
